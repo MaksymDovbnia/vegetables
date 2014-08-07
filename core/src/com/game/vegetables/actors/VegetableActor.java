@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
 /**
  * Date: 01.08.2014
@@ -19,7 +20,8 @@ public class VegetableActor extends Actor {
 
     public VegetableActor() {
         setSize(width, height);
-        addListener(new VegetableInputListener());
+     //   addListener(new VegetableInputListener());
+        addListener(new VegetablDragListener());
     }
 
     @Override
@@ -37,6 +39,15 @@ public class VegetableActor extends Actor {
         @Override
         public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
             event.getListenerActor().setSize(width, height);
+
+        }
+    }
+
+    private class VegetablDragListener extends DragListener {
+        @Override
+        public void touchDragged(InputEvent event, float x, float y, int pointer) {
+            float xS = event.getStageX();
+
         }
     }
 
@@ -52,7 +63,7 @@ public class VegetableActor extends Actor {
             public void run() {
                 while (true) {
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
